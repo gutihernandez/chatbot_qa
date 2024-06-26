@@ -19,7 +19,7 @@ logger.setLevel(logging.INFO)
 
 syslog_handler = logging.handlers.SysLogHandler(address=(log_url, int(log_port)))
 logger.addHandler(syslog_handler)
-logger.info('test')
+logger.info('testkk')
 # Title of the app
 st.title("Kuran Yardımcısı")
 
@@ -45,7 +45,7 @@ if user_question:
     st.write("Cevap:", completion.choices[0].message.content)
     aggregated_result = "--user_question: " + str(user_question)+ "  --answer: "+ str(completion.choices[0].message.content)
 
-    logger.info('test')
+    logger.info('testllllll')
     #logger.info(msg=type(completion.choices[0].message.content))
     #logger.info(type(aggregated_result))
     #logger.info(aggregated_result)
