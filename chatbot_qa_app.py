@@ -17,7 +17,7 @@ client = OpenAI()
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-syslog_handler = logging.handlers.SysLogHandler(address=(log_url, log_port))
+syslog_handler = logging.handlers.SysLogHandler(address=(log_url, int(log_port)))
 logger.addHandler(syslog_handler)
 logger.info('test')
 # Title of the app
