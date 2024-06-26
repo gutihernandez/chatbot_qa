@@ -44,7 +44,7 @@ if user_question:
     #response = qa_model(question=user_question, context=context)
     #answer = response['answer']
     st.write("Cevap:", completion.choices[0].message.content)
-    aggregated_result = "user_question: ", user_question, " -- answer: ", completion.choices[0].message.content
+    aggregated_result = "--user_question: ", str(user_question), "  --answer: ", str(completion.choices[0].message.content)
     logger.info(aggregated_result)
 else:
     st.write("Kuran'la alakalı bir soru sorunuz:")
