@@ -20,7 +20,7 @@ if user_question:
 
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
-    max_tokens = 200,
+    max_tokens = 1000,
     messages=[
         {"role": "system", "content": """
          You are a Muslim who knows Quran by memory 
@@ -32,6 +32,7 @@ if user_question:
          If the question is not related to Quran or if the answer is not in Quran, 
          you do not give answer but you say that the question is unrelated or not in Quran.
          Speak religiously.
+         Answer in detail.
          Answer in Turkish.
          """},
         #{"role": "user", "content": "Tell me which sure in Quran is related to animal sacrifice. Summarize the sure in a single sentence."}
