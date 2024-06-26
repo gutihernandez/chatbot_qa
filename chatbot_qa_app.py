@@ -9,10 +9,10 @@ OpenAI.api_key = api_key
 client = OpenAI()
 
 # Title of the app
-st.title("Quran QA")
+st.title("Kuran Yardımcısı")
 
 # Input from the user
-user_question = st.text_input("Ask a question:")
+user_question = st.text_input("Kuran'la alakalı bir soru sorunuz:")
 
 
 
@@ -41,9 +41,9 @@ if user_question:
 
     #response = qa_model(question=user_question, context=context)
     #answer = response['answer']
-    st.write("Answer:", completion.choices[0].message.content)
+    st.write("Cevap:", completion.choices[0].message.content)
 else:
-    st.write("Please enter a question.")
+    st.write("Kuran'la alakalı bir soru sorunuz:")
 
 # Note for users
-st.markdown("**Note:** The responses are AI generated and therefore should always be validated with Quran itself.")
+st.markdown("**Note:** Cevaplar Yapay Zeka ile üretilmiştir ve her zaman Kuran aracılığıyla teyit edilmelidir.")
