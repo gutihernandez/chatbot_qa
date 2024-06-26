@@ -47,8 +47,8 @@ if user_question:
     aggregated_result = "--user_question: " + str(user_question)+ "  --answer: "+ str(completion.choices[0].message.content)
     logger.info(user_question)
     logger.info(completion.choices[0].message.content)
-    logger.info(type(aggregated_result))
-    logger.info(aggregated_result)
+    #logger.info(type(aggregated_result))
+    #logger.info(aggregated_result)
 else:
     st.write("Kuran'la alakalı bir soru sorunuz:")
 
