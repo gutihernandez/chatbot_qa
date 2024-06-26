@@ -35,7 +35,7 @@ if "last_api_call_time" not in st.session_state:
     st.session_state.last_api_call_time = 0.0
 
 # Function to ensure at least 30 seconds between API calls
-@st.cache_data(allow_output_mutation=True)
+@st.cache_resource(allow_output_mutation=True)
 def rate_limited_api_call(client, user_question):
     current_time = time.time()
     time_since_last_call = current_time - st.session_state.last_api_call_time
