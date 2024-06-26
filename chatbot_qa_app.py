@@ -33,7 +33,7 @@ if user_question:
     messages=[
         {"role": "system", "content": message_prompt},
         #{"role": "user", "content": "Tell me which sure in Quran is related to animal sacrifice. Summarize the sure in a single sentence."}
-        {"role": "user", "content": user_question}
+        {"role": "user", "content": user_question[:1000]}
     ]
     )
 
