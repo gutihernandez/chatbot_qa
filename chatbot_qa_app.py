@@ -4,7 +4,7 @@ from openai import OpenAI
 import logging
 import logging.handlers
 import time
-global_counter = 0
+
 # Setup Streamlit secrets
 log_url = st.secrets["papertrail_url"]
 log_port = st.secrets["papertrail_port"]
@@ -20,7 +20,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 syslog_handler = logging.handlers.SysLogHandler(address=(log_url, int(log_port)))
 logger.addHandler(syslog_handler)
-
+global_counter = 0
 # Title of the app
 st.title("Kuran Yardımcısı")
 
@@ -50,8 +50,7 @@ def rate_limited_api_call(client, user_question):
             {"role": "user", "content": user_question[:1000]}
         ]
     )
-    global_counter += 1
-    print(global_counter)
+    
 
     return completion
 
@@ -64,7 +63,8 @@ if user_question and user_question != st.session_state.last_input:
 
     # Make the rate-limited API call
     completion = rate_limited_api_call(client, user_question)
-    
+    global_counter = global_counter + 1
+    print(global_counter)
     # Store the API response in session state
     st.session_state.api_response = completion.choices[0].message.content
 
