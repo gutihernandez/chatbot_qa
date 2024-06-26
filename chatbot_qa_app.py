@@ -23,7 +23,7 @@ logger.addHandler(syslog_handler)
 
 # Title of the app
 st.title("Kuran Yardımcısı")
-time.sleep(10)
+
 # Initialize session state for storing the user input and response
 if "user_question" not in st.session_state:
     st.session_state.user_question = ""
@@ -55,6 +55,7 @@ if user_question and user_question != st.session_state.last_input:
     # Log the result
     aggregated_result = f"--user_question: {user_question} --answer: {st.session_state.api_response}"
     logger.info(aggregated_result)
+    st.stop()
 
 # Display the response if available
 if st.session_state.api_response:
