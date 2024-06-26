@@ -28,9 +28,6 @@ user_question = st.text_input("Kuran'la alakalı bir soru sorunuz:")
 
 
 if user_question:
-
-
-
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     max_tokens = 1000,
@@ -46,13 +43,16 @@ if user_question:
     st.write("Cevap:", completion.choices[0].message.content)
     aggregated_result = "--user_question: " + str(user_question)+ "  --answer: "+ str(completion.choices[0].message.content)
 
-    time.sleep(2)
     logger.info(aggregated_result)
     #logger.info(msg=type(completion.choices[0].message.content))
     #logger.info(type(aggregated_result))
     #logger.info(aggregated_result)
+    user_question = False
+    time.sleep(5)
 else:
     st.write("Kuran'la alakalı bir soru sorunuz:")
+    user_question = False
+    time.sleep(5)
 
 # Note for users
 st.markdown("**Note:** Cevaplar Yapay Zeka ile üretilmiştir ve her zaman Kuran aracılığıyla teyit edilmelidir.")
