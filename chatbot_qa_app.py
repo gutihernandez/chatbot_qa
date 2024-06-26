@@ -5,8 +5,8 @@ import logging
 import logging.handlers
 
 
-papertrail_url=st.secrets["papertrail_url"]
-papertrail_port=st.secrets["papertrail_port"]
+log_url=st.secrets["papertrail_url"]
+log_port=st.secrets["papertrail_port"]
 api_key=st.secrets["OPENAI_API_KEY"]
 message_prompt=st.secrets["message_prompt"]
 OpenAI.api_key = api_key
@@ -17,10 +17,9 @@ client = OpenAI()
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-# Configure the Papertrail handler
-syslog_handler = logging.handlers.SysLogHandler(address=(papertrail_url, papertrail_port))
+syslog_handler = logging.handlers.SysLogHandler(address=(log_url, log_port))
 logger.addHandler(syslog_handler)
-
+logger.info('test')
 # Title of the app
 st.title("Kuran Yardımcısı")
 
