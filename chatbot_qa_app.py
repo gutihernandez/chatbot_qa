@@ -45,6 +45,8 @@ if user_question:
     #answer = response['answer']
     st.write("Cevap:", completion.choices[0].message.content)
     aggregated_result = "--user_question: " + str(user_question)+ "  --answer: "+ str(completion.choices[0].message.content)
+    logger.info(user_question)
+    logger.info(completion.choices[0].message.content)
     logger.info(type(aggregated_result))
     logger.info(aggregated_result)
 else:
