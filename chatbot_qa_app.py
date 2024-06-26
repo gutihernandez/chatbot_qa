@@ -11,7 +11,7 @@ api_key=st.secrets["OPENAI_API_KEY"]
 message_prompt=st.secrets["message_prompt"]
 OpenAI.api_key = api_key
 client = OpenAI()
-
+last_question = ''
 
 # Set up basic logging configuration
 logger = logging.getLogger()
@@ -24,9 +24,8 @@ st.title("Kuran Yardımcısı")
 
 # Input from the user
 user_question = st.text_input("Kuran'la alakalı bir soru sorunuz:")
-
-
-
+    
+time.sleep(2)
 if user_question:
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
@@ -48,11 +47,11 @@ if user_question:
     #logger.info(type(aggregated_result))
     #logger.info(aggregated_result)
     user_question = False
-    time.sleep(5)
+    time.sleep(2)
 else:
     st.write("Kuran'la alakalı bir soru sorunuz:")
     user_question = False
-    time.sleep(5)
+    time.sleep(2)
 
 # Note for users
 st.markdown("**Note:** Cevaplar Yapay Zeka ile üretilmiştir ve her zaman Kuran aracılığıyla teyit edilmelidir.")
