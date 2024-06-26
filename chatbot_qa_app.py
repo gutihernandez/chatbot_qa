@@ -70,7 +70,7 @@ if user_question and user_question != st.session_state.last_input:
 
     # Log the result
     aggregated_result = f"--user_question: {user_question} --answer: {st.session_state.api_response}"
-    logger.info(aggregated_result)
+    logger.info(global_counter)
 
 # Display the response if available
 if st.session_state.api_response:
