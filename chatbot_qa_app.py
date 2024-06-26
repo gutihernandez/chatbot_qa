@@ -20,7 +20,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 syslog_handler = logging.handlers.SysLogHandler(address=(log_url, int(log_port)))
 logger.addHandler(syslog_handler)
-global_counter = 0
+
 # Title of the app
 st.title("Kuran Yardımcısı")
 
@@ -61,14 +61,13 @@ if user_question and user_question != st.session_state.last_input:
 
     # Make the rate-limited API call
     completion = rate_limited_api_call(client, user_question)
-    global_counter = global_counter + 1
-    print(global_counter)
+    
     # Store the API response in session state
     st.session_state.api_response = completion.choices[0].message.content
 
     # Log the result
     aggregated_result = f"--user_question: {user_question} --answer: {st.session_state.api_response}"
-    logger.info(global_counter)
+    logger.info(aggregated_result)
 
 # Display the response if available
 if st.session_state.api_response:
