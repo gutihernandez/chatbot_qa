@@ -4,7 +4,7 @@ from openai import OpenAI
 import logging
 import logging.handlers
 import time
-
+global_counter = 0
 # Setup Streamlit secrets
 log_url = st.secrets["papertrail_url"]
 log_port = st.secrets["papertrail_port"]
@@ -50,6 +50,8 @@ def rate_limited_api_call(client, user_question):
             {"role": "user", "content": user_question[:1000]}
         ]
     )
+    global_counter += 1
+    print(global_counter)
 
     return completion
 
