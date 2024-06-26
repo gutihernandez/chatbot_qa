@@ -32,6 +32,7 @@ if user_question:
          If the question is not related to Quran or if the answer is not in Quran, 
          you do not give answer but you say that the question is unrelated or not in Quran.
          Speak religiously.
+         Answer in Turkish.
          """},
         #{"role": "user", "content": "Tell me which sure in Quran is related to animal sacrifice. Summarize the sure in a single sentence."}
         {"role": "user", "content": user_question}
