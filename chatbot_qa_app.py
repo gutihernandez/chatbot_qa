@@ -22,7 +22,7 @@ syslog_handler = logging.handlers.SysLogHandler(address=(log_url, int(log_port))
 logger.addHandler(syslog_handler)
 
 # Title of the app
-st.title("Kuran Yardımcısı")
+st.title("Kutsal Kitaplar Yardımcısı")
 
 # Initialize session state for storing the user input and response
 if "user_question" not in st.session_state:
@@ -53,7 +53,7 @@ def rate_limited_api_call(client, user_question):
     return completion
 
 # Input from the user
-user_question = st.text_input("Kuran'la alakalı bir soru sorunuz:", value=st.session_state.user_question)
+user_question = st.text_input("Kutsal Kitaplarla alakalı bir soru sorunuz:", value=st.session_state.user_question)
 
 # Check if the input has changed and is non-empty
 if user_question and user_question != st.session_state.last_input:
@@ -74,4 +74,4 @@ if st.session_state.api_response:
     st.write("Cevap:", st.session_state.api_response)
 
 # Note for users
-st.markdown("**Note:** Cevaplar Yapay Zeka ile üretilmiştir ve her zaman Kuran aracılığıyla teyit edilmelidir.")
+st.markdown("**Note:** Cevaplar Yapay Zeka ile üretilmiştir ve her zaman Kutsal Kitaplar aracılığıyla teyit edilmelidir.")
