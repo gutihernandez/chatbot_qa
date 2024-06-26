@@ -31,15 +31,17 @@ if "api_response" not in st.session_state:
     st.session_state.api_response = None
 if "last_input" not in st.session_state:
     st.session_state.last_input = ""
+if "last_api_call_time" not in st.session_state:
+    st.session_state.last_api_call_time = 0.0
 
-# Input from the user
-user_question = st.text_input("Kuran'la alakalı bir soru sorunuz:", value=st.session_state.user_question)
+# Function to ensure at least 30 seconds between API calls
+def rate_limited_api_call(client, user_question):
+    current_time = time.time()
+    time_since_last_call = current_time - st.session_state.last_api_call_time
+    if time_since_last_call < 30:
+        time.sleep(30 - time_since_last_call)
+    st.session_state.last_api_call_time = time.time()
 
-# Check if the input has changed and is non-empty
-if user_question and user_question != st.session_state.last_input:
-    st.session_state.last_input = user_question
-
-    # Make the API call
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         max_tokens=1000,
@@ -48,6 +50,18 @@ if user_question and user_question != st.session_state.last_input:
             {"role": "user", "content": user_question[:1000]}
         ]
     )
+
+    return completion
+
+# Input from the user
+user_question = st.text_input("Kuran'la alakalı bir soru sorunuz:", value=st.session_state.user_question)
+
+# Check if the input has changed and is non-empty
+if user_question and user_question != st.session_state.last_input:
+    st.session_state.last_input = user_question
+
+    # Make the rate-limited API call
+    completion = rate_limited_api_call(client, user_question)
     
     # Store the API response in session state
     st.session_state.api_response = completion.choices[0].message.content
@@ -55,7 +69,6 @@ if user_question and user_question != st.session_state.last_input:
     # Log the result
     aggregated_result = f"--user_question: {user_question} --answer: {st.session_state.api_response}"
     logger.info(aggregated_result)
-    st.stop()
 
 # Display the response if available
 if st.session_state.api_response:
