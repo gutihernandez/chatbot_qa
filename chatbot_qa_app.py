@@ -3,6 +3,7 @@ import streamlit as st
 from openai import OpenAI
 import logging
 import logging.handlers
+import time
 
 # Setup Streamlit secrets
 log_url = st.secrets["papertrail_url"]
@@ -22,7 +23,7 @@ logger.addHandler(syslog_handler)
 
 # Title of the app
 st.title("Kuran Yardımcısı")
-
+time.sleep(10)
 # Initialize session state for storing the user input and response
 if "user_question" not in st.session_state:
     st.session_state.user_question = ""
